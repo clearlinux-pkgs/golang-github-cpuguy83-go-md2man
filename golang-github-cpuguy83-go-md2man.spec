@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 1.0.5
-Release  : 1
+Release  : 2
 URL      : https://github.com/cpuguy83/go-md2man/archive/v1.0.5.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v1.0.5.tar.gz
 Summary  : No detailed summary available
@@ -27,7 +27,7 @@ export LANG=C
 
 %install
 gopath="/usr/lib/golang"
-library_path=""
+library_path="github.com/cpuguy83/go-md2man"
 rm -rf %{buildroot}
 install -d -p %{buildroot}${gopath}/src/${library_path}/
 for file in $(find . -iname "*.go" -o -iname "*.h" -o -iname "*.c") ; do
@@ -39,6 +39,6 @@ done
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/golang/src/md2man.go
-/usr/lib/golang/src/md2man/md2man.go
-/usr/lib/golang/src/md2man/roff.go
+/usr/lib/golang/src/github.com/cpuguy83/go-md2man/md2man.go
+/usr/lib/golang/src/github.com/cpuguy83/go-md2man/md2man/md2man.go
+/usr/lib/golang/src/github.com/cpuguy83/go-md2man/md2man/roff.go
