@@ -1,0 +1,2 @@
+install -d -m0755 %{buildroot}/usr/bin
+install -m0755 go-md2man-1.0.6 %{buildroot}/usr/bin/go-md2man
