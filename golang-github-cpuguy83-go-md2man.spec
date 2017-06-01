@@ -4,13 +4,14 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 1.0.6
-Release  : 10
+Release  : 11
 URL      : https://github.com/cpuguy83/go-md2man/archive/v1.0.6.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v1.0.6.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause MIT
 Requires: golang-github-cpuguy83-go-md2man-bin
+Requires: golang-github-cpuguy83-go-md2man-doc
 BuildRequires : go
 # Suppress stripping binaries
 %define __strip /bin/true
@@ -31,6 +32,14 @@ Group: Binaries
 bin components for the golang-github-cpuguy83-go-md2man package.
 
 
+%package doc
+Summary: doc components for the golang-github-cpuguy83-go-md2man package.
+Group: Documentation
+
+%description doc
+doc components for the golang-github-cpuguy83-go-md2man package.
+
+
 %prep
 %setup -q -n go-md2man-1.0.6
 %patch1 -p1
@@ -49,6 +58,9 @@ rm -rf %{buildroot}
 ## make_install_append content
 install -d -m0755 %{buildroot}/usr/bin
 install -m0755 go-md2man-1.0.6 %{buildroot}/usr/bin/go-md2man
+./go-md2man-1.0.6 -in go-md2man.1.md -out go-md2man.1
+install -d -m0755 %{buildroot}/usr/share/man/man1
+install -m0644 go-md2man.1 %{buildroot}/usr/share/man/man1/go-md2man.1
 ## make_install_append end
 
 %files
@@ -57,3 +69,7 @@ install -m0755 go-md2man-1.0.6 %{buildroot}/usr/bin/go-md2man
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/go-md2man
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/man/man1/*
