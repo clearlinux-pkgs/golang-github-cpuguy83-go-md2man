@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 1.0.8
-Release  : 15
+Release  : 16
 URL      : https://github.com/cpuguy83/go-md2man/archive/v1.0.8.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v1.0.8.tar.gz
 Summary  : No detailed summary available
