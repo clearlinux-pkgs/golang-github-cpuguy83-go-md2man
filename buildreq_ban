@@ -1,2 +1,5 @@
 # This file contains build requirements that get picked up but are
 # undesirable. One entry per line, no whitespace.
+go-github.com-pmezard-go-difflib
+go-github.com-russross-blackfriday-v2
+go-github.com-shurcooL-sanitized_anchor_name

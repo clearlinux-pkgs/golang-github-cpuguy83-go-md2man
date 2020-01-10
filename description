@@ -1,0 +1,2 @@
+Converts markdown into roff (man pages). Uses blackfriday to process markdown
+into man pages.
