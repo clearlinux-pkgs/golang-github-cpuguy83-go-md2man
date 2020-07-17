@@ -1,1 +1,1 @@
-export BUILD_FLAGS="-mod vendor -v"
+export BUILD_FLAGS="-mod vendor -buildmode=pie -v"
