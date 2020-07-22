@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 2.0.0
-Release  : 20
+Release  : 21
 URL      : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Summary  : Markdown to man page converter
@@ -17,6 +17,7 @@ BuildRequires : buildreq-golang
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: enable-cgo.patch
 
 %description
 Converts markdown into roff (man pages). Uses blackfriday to process markdown
@@ -50,16 +51,17 @@ man components for the golang-github-cpuguy83-go-md2man package.
 %prep
 %setup -q -n go-md2man-2.0.0
 cd %{_builddir}/go-md2man-2.0.0
+%patch1 -p1
 
 %build
 ## build_prepend content
-export BUILD_FLAGS="-mod vendor -buildmode=pie -v"
+export BUILD_FLAGS="-mod vendor -buildmode=pie -v -ldflags '-extldflags -static-pie' -tags netgo,osusergo"
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595021491
+export SOURCE_DATE_EPOCH=1595386328
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -69,7 +71,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1595021491
+export SOURCE_DATE_EPOCH=1595386328
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man
 cp %{_builddir}/go-md2man-2.0.0/LICENSE.md %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/b7a606730713ac061594edab33cf941704b4a95c
