@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 2.0.0
-Release  : 23
+Release  : 24
 URL      : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Summary  : Markdown to man page converter
@@ -55,13 +55,13 @@ cd %{_builddir}/go-md2man-2.0.0
 
 %build
 ## build_prepend content
-export BUILD_FLAGS="-mod vendor -buildmode=pie -v -ldflags '-extldflags -static-pie' -tags netgo,osusergo"
+export BUILD_FLAGS="-mod vendor -buildmode=pie -v -ldflags '-linkmode external -extldflags -static-pie' -tags netgo,osusergo"
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595386328
+export SOURCE_DATE_EPOCH=1605150034
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -71,7 +71,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1595386328
+export SOURCE_DATE_EPOCH=1605150034
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man
 cp %{_builddir}/go-md2man-2.0.0/LICENSE.md %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/b7a606730713ac061594edab33cf941704b4a95c
