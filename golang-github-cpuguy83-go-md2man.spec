@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 2.0.0
-Release  : 30
+Release  : 31
 URL      : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v2.0.0/go-md2man-2.0.0.tar.gz
 Summary  : Markdown to man page converter
