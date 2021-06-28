@@ -1,1 +1,2 @@
-export BUILD_FLAGS="-mod vendor -buildmode=pie -v -ldflags '-linkmode external -extldflags -static-pie' -tags netgo,osusergo"
+export BUILD_FLAGS="-mod vendor -tags netgo,osusergo"
+export GOFLAGS='-buildmode=pie'
