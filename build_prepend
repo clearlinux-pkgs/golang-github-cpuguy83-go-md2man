@@ -1,1 +1,2 @@
 export BUILD_FLAGS="-mod vendor"
+unset CLEAR_DEBUG_TERSE

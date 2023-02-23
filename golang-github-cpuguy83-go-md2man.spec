@@ -4,7 +4,7 @@
 #
 Name     : golang-github-cpuguy83-go-md2man
 Version  : 2.0.2
-Release  : 56
+Release  : 57
 URL      : https://github.com/cpuguy83/go-md2man/archive/v2.0.2/go-md2man-2.0.2.tar.gz
 Source0  : https://github.com/cpuguy83/go-md2man/archive/v2.0.2/go-md2man-2.0.2.tar.gz
 Summary  : Markdown to man page converter
@@ -54,17 +54,18 @@ cd %{_builddir}/go-md2man-2.0.2
 %build
 ## build_prepend content
 export BUILD_FLAGS="-mod vendor"
+unset CLEAR_DEBUG_TERSE
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650908729
+export SOURCE_DATE_EPOCH=1677178033
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 ## make_prepend content
 export GO111MODULE="auto"
 ## make_prepend end
@@ -72,11 +73,11 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1650908729
+export SOURCE_DATE_EPOCH=1677178033
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man
-cp %{_builddir}/go-md2man-2.0.2/LICENSE.md %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/b7a606730713ac061594edab33cf941704b4a95c
-cp %{_builddir}/go-md2man-2.0.2/vendor/github.com/russross/blackfriday/v2/LICENSE.txt %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/da34754c05d40ff81f91de8c1b85ea6e5503e21d
+cp %{_builddir}/go-md2man-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/b7a606730713ac061594edab33cf941704b4a95c || :
+cp %{_builddir}/go-md2man-%{version}/vendor/github.com/russross/blackfriday/v2/LICENSE.txt %{buildroot}/usr/share/package-licenses/golang-github-cpuguy83-go-md2man/da34754c05d40ff81f91de8c1b85ea6e5503e21d || :
 true
 ## install_append content
 install -d -m0755 %{buildroot}/usr/bin
